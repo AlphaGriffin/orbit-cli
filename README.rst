@@ -1,51 +1,67 @@
-====================================
-Alpha Griffin Python Starter Project
-====================================
+===========================================================================
+ORBIT CLI - Command-Line Interface for Op_Return Bitcoin-Implemented Tokens
+===========================================================================
 
-Starting point for a Python project in the Alpha Griffin namespace.
+**A command-line interface for interacting with tokens on Bitcoin Cash implementing the ORBIT standard.**
 
-Use http://git.alphagriffin.com/DummyScript/fauxpython instead if you're not packaging for Alpha Griffin.
+The official website for ORBIT is http://orbit.cash.
 
 .. contents:: Table of Contents
 .. toctree::
    API Documentation <api/modules>
 
-
-Starting a Project
-------------------
-
-You can use this repository as a starting point for any Alpha Griffin Python project. Here's an example of one way to accomplish this with GitHub:
-
-1. Start a new repository on GitHub but **do not initialize** as you will be pushing an existing repository (a clone of pyproject). For this example we'll name it *my_new_thing*.
-2. ``git clone http://git.alphagriffin.com/AlphaGriffin/pyproject my_new_thing``
-3. ``cd my_new_thing``
-4. ``git remote remove origin``
-5. ``git remote add origin http://git.alphagriffin.com/AlphaGriffin/my_new_thing``
-6. ``git push -u origin master``
-
-Now your clone of pyproject lives at the new GitHub address and pushes will go there by default.
-
-**Recommended**
-
-With this extra step you can easily pull and merge again in the future from this master *pyproject* repository:
-
-7. ``git remote add pyproject http://git.alphagriffin.com/AlphaGriffin/pyproject``
-
-Using ``git pull pyproject master`` you can pull and merge the latest from *pyproject* at any time.
+*"Orbit the moon"*
 
 
-First Commit
+Introduction
 ------------
 
-There's a few things you'll want to do for first commit:
+The ORBIT CLI is a program that allows interaction with and management of tokens on Bitcoin Cash implementing the ORBIT standard.
 
-1. Rename the default project source folder: ``git mv ag/pyproject ag/my_new_thing``. It's important you have a similar ``__version__.py`` file in your source folder.
-2. Update variables in ``setup.py``, most importantly NAME must match the name of your new ``ag/my_new_thing`` source folder
-3. Remove the pyproject API rst docs from ``api/`` folder. You can use ``make apidoc_clean apidoc`` to have new ones automatically generated once you have some code to document.
+ORBIT CLI is open source and licensed under the MIT license. See the `LICENSE <LICENSE>`_ file for more details.
+
+
+The ORBIT Ecosystem
+~~~~~~~~~~~~~~~~~~~
+
+ORBIT is a specification for simple, fungible tokens implemented by utilizing OP_RETURN for the storage of token events on the Bitcoin Cash blockchain. No changes to the Bitcoin Cash protocol or nodes are required. However, wallets may wish to incorporate this token standard in order to allow the user to easily take account of and interact with tokens that adhere to this ORBIT standard.
+
+The following projects, when used in conjunction with ORBIT CLI, complete a full ecosystem for tokens on Bitcoin Cash using ORBIT:
+
+- ORBIT Specification and API: https://github.com/AlphaGriffin/orbit
+- ORBIT Node: https://github.com/AlphaGriffin/orbit-node
+- ORBIT Qt Wallet: https://github.com/AlphaGriffin/orbit-wallet
+- ORBIT Web: https://github.com/AlphaGriffin/orbit-web
+
+
+Specification
+-------------
+
+The ORBIT repository at https://github.com/AlphaGriffin/orbit defines the official and complete specification for ORBIT. 
+
+*The current specification version is: 0 (beta testing). Version 0 is reserved and should be used for all testing.*
+
+
+ORBIT CLI
+---------
+
+This ORBIT CLI is written in Python.
+
+
+Dependencies
+~~~~~~~~~~~~
+
+- Python 3
+- ORBIT API: https://github.com/AlphaGriffin/orbit
+- appdirs: https://github.com/ActiveState/appdirs (`pip install appdirs`)
+- BitCash >= 0.5.2.4: https://github.com/sporestack/bitcash (`pip install bitcash\>=0.5.2.4`)
+- PyCrypto: https://github.com/dlitz/pycrypto (`pip install pycrypto`)
+
+In addition to the above, ORBIT CLI may require RPC access to a local or remote ORBIT node for some operations, such as the one provided by Alpha Griffin (http://orbit.alphagriffin.com).
 
 
 Build Overview
---------------
+~~~~~~~~~~~~~~
 
 Both a Makefile and setup.py are provided and used. The setup.py uses Python's standard setuptools package and you can call this script directly to do the basic Python tasks such as creating a wheel, etc.
 
@@ -62,7 +78,7 @@ Every so often, when new source class files are created or moved, you will want 
     make apidoc
     make docs
 
-There's not much to do for a simple Python project but your build may want to do more. In any case you can call ``make python`` if you need to (in pyproject this target simply delegates to ``./setup.py build``).
+There's not much to do for a simple Python project but your build may want to do more. In any case you can call ``make python`` if you need to (in orbit this target simply delegates to ``./setup.py build``).
 
 Build all the common tasks (including documentation) as follows::
 
@@ -74,7 +90,7 @@ To clean up all the common generated files from your project folder::
 
 
 Installing
-----------
+~~~~~~~~~~
 
 To install this project to the local system::
 
@@ -84,17 +100,7 @@ Note that you may need superuser permissions to perform the above step.
 
 
 Using
------
+~~~~~
 
-The **pyproject** module does nothing useful and is for example purposes only, but you can import it to verify correct installation.
-
-If you have already installed the project to the system then it's as simple as::
-    
-    import ag.pyproject
-
-If you have not installed the project system-wide or you have some changes to try, you must add the project folder to Python's search path first::
-
-    import sys, os
-    sys.path.insert(0, os.path.abspath('/path/to/pyproject'))
-    import ag.pyproject
+**FIXME**
 

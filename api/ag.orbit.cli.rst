@@ -1,10 +1,10 @@
-ag\.pyproject package
-=====================
+ag\.orbit\.cli package
+======================
 
 Module contents
 ---------------
 
-.. automodule:: ag.pyproject
+.. automodule:: ag.orbit.cli
     :members:
     :undoc-members:
     :show-inheritance:
