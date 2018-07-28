@@ -3,7 +3,7 @@
 
 #import ag.logging as log
 
-from os import mkdir, path
+from os import makedirs, path
 
 from appdirs import AppDirs
 dirs = AppDirs("orbit-cli", "Alpha Griffin")
@@ -15,7 +15,7 @@ if not path.exists(dir):
     #log.info("Running first-time setup for configuration...")
 
     #log.debug("Creating user config directory")
-    mkdir(dir)
+    makedirs(dir, exist_ok=True)
 
 if not path.isdir(dir):
     #log.fatal("Expected a directory for configdir", configdir=dir)

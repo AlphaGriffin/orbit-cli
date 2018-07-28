@@ -1,6 +1,8 @@
 Copyright (C) 2018 Alpha Griffin
 @%@~LICENSE~@%@
 
+saw_072718_3 - Make missing parent directories when creating config dir.
+
 saw_072718_2 - Installation and documentation fixes.
 
 saw_072718_1 - The beginnings of a command-line interface for ORBIT.
