@@ -7,8 +7,6 @@ ORBIT CLI - Command-Line Interface for Op_Return Bitcoin-Implemented Tokens
 The official website for ORBIT is http://orbit.cash.
 
 .. contents:: Table of Contents
-.. toctree::
-   API Documentation <api/modules>
 
 *"Orbit the moon"*
 
@@ -103,4 +101,11 @@ Using
 ~~~~~
 
 **FIXME**
+
+
+Python API
+----------
+
+.. toctree::
+   API Documentation <api/modules>
 

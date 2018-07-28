@@ -12,7 +12,7 @@ def usage():
     print("    help")
     print("        Display this usage screen")
     print()
-    print("    create <supply> <decimals> <symbol> [<name>] [<main_uri>] [<image_uri>]")
+    print("    create <supply> <decimals> <symbol> [<name> [<main_uri> [<image_uri>]]]")
     print("        Create new token")
     print("            - <supply> is initial token supply (number of indivisible units)")
     print("            - <decimals> is number of decimal points to divide up the supply")

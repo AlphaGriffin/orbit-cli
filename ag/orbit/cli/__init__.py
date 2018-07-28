@@ -1,5 +1,6 @@
 # Copyright (C) 2018 Alpha Griffin
 # @%@~LICENSE~@%@
+
 """Command-Line Interface for ORBIT
 
 This is a command-line interface following the ORBIT specification

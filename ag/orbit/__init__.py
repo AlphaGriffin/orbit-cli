@@ -3,8 +3,6 @@
 
 """Alpha Griffin ORBIT
 
-This package-init script currently simply handles namespace sharing.
-
 .. module:: ag.orbit
    :synopsis: Alpha Griffin ORBIT Namespace
 """

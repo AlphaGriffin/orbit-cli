@@ -5,7 +5,7 @@ from .wallet.list import run as list_wallets
 from .wallet.key import key as get_key
 from ag.orbit import API
 
-from bitcash import Key, __version__
+from bitcash import Key
 from bitcash.exceptions import InsufficientFunds
 from bitcash.network import get_fee
 from bitcash.transaction import MESSAGE_LIMIT
@@ -18,16 +18,14 @@ from time import sleep
 # TODO: support self-signing
 
 def broadcast(op):
-    api = API()
-    message = api.prepare(op)
+    orbit = API()
+    message = orbit.prepare(op)
 
-    print(len(message))
-    
     if len(message) > MESSAGE_LIMIT:
         raise ValueError("The data is too large. Try reducing some text or removing optional data.")
 
     # sanity check
-    if api.parse(message) != op:
+    if orbit.parse(message) != op:
         raise AssertionError('Re-parsing the prepared bytes of this operation does not return the same values')
 
     interactive = True
@@ -35,7 +33,6 @@ def broadcast(op):
     if not stdin.isatty():
         key = stdin.readline().rstrip()
         interactive = False
-        fee = None
 
     else:
         print()
