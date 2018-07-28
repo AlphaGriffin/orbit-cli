@@ -1,6 +1,8 @@
 Copyright (C) 2018 Alpha Griffin
 @%@~LICENSE~@%@
 
+saw_072718_5 - Misc. installation and documentation fixes.
+
 saw_072718_4 - Another install fix for Linux.
 
 saw_072718_3 - Make missing parent directories when creating config dir.

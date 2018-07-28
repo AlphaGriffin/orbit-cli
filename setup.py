@@ -34,8 +34,7 @@ REQUIRE = [                             # package dependencies
             'ag.orbit(>=0,<1)',
             'appdirs',
             'bitcash(>=0.5.2.4)',
-            'pycrypto',
-            'sphinx_rtd_theme'              # for building documentation
+            'pycrypto'
           ]
 
 DESC    = 'ORBIT Command-Line Interface'

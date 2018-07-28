@@ -54,6 +54,7 @@ Dependencies
 - appdirs: https://github.com/ActiveState/appdirs (`pip install appdirs`)
 - BitCash >= 0.5.2.4: https://github.com/sporestack/bitcash (`pip install bitcash\>=0.5.2.4`)
 - PyCrypto: https://github.com/dlitz/pycrypto (`pip install pycrypto`)
+- *For building documentation (optional):* sphinx and sphinx_rtd_theme (`pip install sphinx sphinx_rtd_theme`)
 
 In addition to the above, ORBIT CLI may require RPC access to a local or remote ORBIT node for some operations, such as the one provided by Alpha Griffin (http://orbit.alphagriffin.com).
 
