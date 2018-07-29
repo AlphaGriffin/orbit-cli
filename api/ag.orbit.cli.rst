@@ -12,22 +12,6 @@ Subpackages
 Submodules
 ----------
 
-ag\.orbit\.cli\.config module
------------------------------
-
-.. automodule:: ag.orbit.cli.config
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-ag\.orbit\.cli\.encryption module
----------------------------------
-
-.. automodule:: ag.orbit.cli.encryption
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
 ag\.orbit\.cli\.network module
 ------------------------------
 

@@ -16,9 +16,9 @@ def run(args):
     password = args[1] if len(args) > 1 else None
 
     print()
-    address(name, password)
+    balance(name, password)
 
-def address(name, password=None, display=True):
+def balance(name, password=None, display=True):
     print("Reading BCH address from ORBIT wallet file...")
 
     print("    Name: {}".format(name))
@@ -26,12 +26,13 @@ def address(name, password=None, display=True):
     print("    File: {}".format(wpath))
 
     wallet = access(wpath, password_handler(password))
+    balance = wallet.get_balance()
 
     if display:
         print()
-        print("    Public BCH address: {}".format(wallet.address))
+        print("    Current balance : {} satoshi".format(balance))
 
-    return wallet.address
+    return balance
 
 
 if __name__ == '__main__':

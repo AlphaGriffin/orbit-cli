@@ -3,16 +3,12 @@
 # Copyright (C) 2018 Alpha Griffin
 # @%@~LICENSE~@%@
 
-from ag.orbit import API
-from ag.orbit.cli.config import dir
-from ag.orbit.cli.encryption import encrypt
+from ag.orbit.command import main
+from ag.orbit.cli import password_handler
+from ag.orbit.wallet import path, create as wcreate
 
-from os.path import exists, join
-from base64 import urlsafe_b64encode
 from sys import stdin
 from getpass import getpass
-
-from bitcash.wallet import PrivateKey
 
 
 def run(args):
@@ -29,86 +25,47 @@ def run(args):
     import_key(name, key, password)
 
 def import_key(name, key=None, password=None):
-    print("Importing Bitcoin Cash key for new wallet file...")
+    print("Importing private BCH key for new ORBIT wallet file...")
 
     print("    Name: {}".format(name))
-    path = join(dir, urlsafe_b64encode(name.encode('utf-8')).decode('ascii') + ".wallet")
-    print("    File: {}".format(path))
+    wpath = path(name)
+    print("    File: {}".format(wpath))
 
-    if exists(path):
-        print()
-        raise ValueError("A wallet file by this name already exists! Please delete it first.")
+    def get_key():
+        nonlocal key
 
-    if key is None:
-        if stdin.isatty():
-            print()
-            key = getpass("Enter private key (hex): ")
-
-        else:
-            key = stdin.readline().rstrip()
-
-    if not key:
-        print()
-        raise ValueError("Key may not be empty")
-
-    try:
-        wallet = PrivateKey.from_hex(key)
-    except ValueError:
-        print()
-        raise ValueError("Not a valid key")
-
-    print("    Public address: {}".format(wallet.address))
-
-    if password is None:
-        print()
-
-        if stdin.isatty():
-            password = getpass("Enter password for encryption: ")
-
-            if password:
-                confirm = getpass("Please re-enter your password: ")
-
-                if password != confirm:
-                    print()
-                    raise ValueError("The passwords do not match")
+        if not key:
+            if stdin.isatty():
+                print()
+                key = getpass("Enter private BCH key (hex): ")
 
             else:
-                print("WARNING: You are about to save the private key without encryption! This is not recommended.")
-                confirm = input("    Please type 'confirm' if you accept the risk and wish to continue: ")
+                key = stdin.readline().rstrip()
 
-                if confirm != 'confirm':
-                    print()
-                    raise ValueError("User abort")
+        if not key:
+            print()
+            raise ValueError("Key may not be empty")
 
-        else:
-            password = stdin.readline().rstrip()
+        return key
 
-            #if not password:
-            #    raise ValueError("Password may not be empty")
+    def show_address(address):
+        print("    Public BCH address: {}".format(address))
 
-    elif not password:
-        print()
-        raise ValueError("Password may not be empty")
+    def unencrypted_warning():
+        print("WARNING: You are about to save the private key without encryption! THIS IS NOT RECOMMENDED.")
+        confirm = input("    Please type 'confirm' if you accept the risk and wish to continue: ")
 
-    key = key.encode('charmap')
+        if confirm != 'confirm':
+            raise ValueError('User abort')
+
+    wallet = wcreate(wpath, get_key, password_handler(password, create=True), show_address, unencrypted_warning)
+
     print()
-
-    if password:
-        data = b"%E%" + encrypt(API.PREAMBLE + key, password.encode('utf-8'))
-    else:
-        print("WARNING: Saving key without encryption.")
-        data = b"%D%" + key
-
-    with open(path, 'wb') as out:
-        out.write(data)
-
     print("Wallet saved")
+
+    return wallet
 
 
 if __name__ == '__main__':
-    from contextlib import suppress
-    from sys import argv
-
-    with suppress(KeyboardInterrupt):
-        run(argv[1:])
+    main(run)
 

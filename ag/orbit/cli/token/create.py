@@ -3,6 +3,7 @@
 # Copyright (C) 2018 Alpha Griffin
 # @%@~LICENSE~@%@
 
+from ag.orbit.command import main
 from ag.orbit.ops.create import Create
 from ag.orbit.cli import arg
 from ag.orbit.cli.network import broadcast
@@ -12,6 +13,7 @@ from ag.orbit.cli.network import broadcast
 def run(args):
     args = None if args is not None and len(args) < 1 else args
 
+    print()
     print("Create new token...")
 
     if args is not None:
@@ -26,20 +28,13 @@ def run(args):
     main_uri = arg(args, 4, "Main URI", True)
     image_uri = arg(args, 5, "Image URI", True)
 
+    create(supply, decimals, symbol, name, main_uri, image_uri)
+
+def create(supply, decimals, symbol, name=None, main_uri=None, image_uri=None):
     op = Create(supply, decimals, symbol, name, main_uri, image_uri)
     broadcast(op)
 
 
 if __name__ == '__main__':
-    from contextlib import suppress
-    from sys import argv
-
-    with suppress(KeyboardInterrupt):
-        try:
-            print()
-            run(argv[1:] if len(argv) > 1 else None)
-
-        except (ValueError, TypeError) as e:
-            print()
-            print("{}: {}".format(argv[0], e))
+    main(run)
 

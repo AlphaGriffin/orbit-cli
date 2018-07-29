@@ -12,6 +12,14 @@ ag\.orbit\.cli\.wallet\.address module
     :undoc-members:
     :show-inheritance:
 
+ag\.orbit\.cli\.wallet\.balance module
+--------------------------------------
+
+.. automodule:: ag.orbit.cli.wallet.balance
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 ag\.orbit\.cli\.wallet\.create module
 -------------------------------------
 

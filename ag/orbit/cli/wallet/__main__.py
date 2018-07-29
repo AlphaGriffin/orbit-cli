@@ -3,10 +3,17 @@
 
 #import ag.logging as log
 
+from ...command import invoke
+
+from sys import argv, exit
+from contextlib import suppress
+
+
+CALL = 'orbit-cli wallet'
 
 def usage():
     print()
-    print("Usage: orbit-cli wallet <command>")
+    print("Usage: {} <command>".format(CALL))
     print()
     print("Where <command> is:")
     print("    help")
@@ -31,6 +38,11 @@ def usage():
     print("            - <name> is the name of the wallet to read")
     print("            - <password> is the encryption password used during creation")
     print()
+    print("    balance <name> [<password>]")
+    print("        Print the current balance for a wallet")
+    print("            - <name> is the name of the wallet to read")
+    print("            - <password> is the encryption password used during creation")
+    print()
     print("    key <name> [<password>]")
     print("        Print the private key stored in a wallet")
     print("            - <name> is the name of the wallet to read")
@@ -40,105 +52,51 @@ def usage():
     print("or piped in through stdin. If omitted, you will be prompted to enter the key/password.")
     print()
 
-from sys import argv, exit
-from contextlib import suppress
-
 with suppress(KeyboardInterrupt):
     if len(argv) > 1 and argv[1] is None:
         # we were called from the parent module
-        argv = argv[1:]
+        args = argv[2:]
+    else:
+        args = argv[1:]
 
-    if len(argv) < 2:
+    if len(args) < 1:
         usage()
-        exit(1)
+        exit(301)
         
-    elif argv[1] == 'help':
+    cmd = args[0]
+    args = args[1:] if len(args) > 1 else None
+
+    if cmd == 'help':
         usage()
 
-    elif argv[1] == 'create':
-        print()
-
-        if len(argv) > 4:
-            print("orbit-cli wallet create: wrong number of arguments")
-            exit(2)
-
+    elif cmd == 'create':
         from .create import run
-        try:
-            run(argv[2:])
+        invoke(CALL, cmd, 302, run, args, 0, 2)
 
-        except ValueError as e:
-            print()
-            print("orbit-cli wallet create: {}".format(e))
-            exit(2)
-
-    elif argv[1] == 'import':
-        print()
-
-        if len(argv) < 3 or len(argv) > 5:
-            print("orbit-cli wallet import: wrong number of arguments")
-            exit(3)
-
+    elif cmd == 'import':
         from .import_key import run
-        try:
-            run(argv[2:])
+        invoke(CALL, cmd, 303, run, args, 1, 3)
 
-        except ValueError as e:
-            print()
-            print("orbit-cli wallet import: {}".format(e))
-            exit(3)
-
-    elif argv[1] == 'list':
-        print()
-
-        if len(argv) != 2:
-            print("orbit-cli wallet list: not expecting any arguments")
-            exit(4)
-
+    elif cmd == 'list':
         from .list import run
-        try:
-            run()
+        invoke(CALL, cmd, 304, run, args)
 
-        except ValueError as e:
-            print()
-            print("orbit-cli wallet list: {}".format(e))
-            exit(4)
-
-    elif argv[1] == 'address':
-        print()
-
-        if len(argv) < 3 or len(argv) > 4:
-            print("orbit-cli wallet address: wrong number of arguments")
-            exit(5)
-
+    elif cmd == 'address':
         from .address import run
-        try:
-            run(argv[2:])
+        invoke(CALL, cmd, 305, run, args, 1, 2)
 
-        except ValueError as e:
-            print()
-            print("orbit-cli wallet address: {}".format(e))
-            exit(5)
+    elif cmd == 'balance':
+        from .balance import run
+        invoke(CALL, cmd, 306, run, args, 1, 2)
 
-    elif argv[1] == 'key':
-        print()
-
-        if len(argv) < 3 or len(argv) > 4:
-            print("orbit-cli wallet key: wrong number of arguments")
-            exit(6)
-
+    elif cmd == 'key':
         from .key import run
-        try:
-            run(argv[2:])
-
-        except ValueError as e:
-            print()
-            print("orbit-cli wallet key: {}".format(e))
-            exit(6)
+        invoke(CALL, cmd, 307, run, args, 1, 2)
 
     else:
-        #log.error("unknown command", command=argv[1])
+        #log.error("unknown command", command=cmd)
         print()
-        print("orbit-cli wallet: unknown command: " + argv[1])
+        print("{}: unknown command: {}".format(CALL, cmd))
         usage()
-        exit(2)
+        exit(399)
 

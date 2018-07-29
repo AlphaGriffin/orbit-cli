@@ -3,16 +3,23 @@
 
 #import ag.logging as log
 
+from ...command import invoke
+
+from sys import argv, exit
+from contextlib import suppress
+
+
+CALL = 'orbit-cli token'
 
 def usage():
     print()
-    print("Usage: orbit-cli token <command>")
+    print("Usage: {} <command>".format(CALL))
     print()
     print("Where <command> is:")
     print("    help")
     print("        Display this usage screen")
     print()
-    print("    create <supply> <decimals> <symbol> [<name> [<main_uri> [<image_uri>]]]")
+    print("    create [<supply> <decimals> <symbol> [<name> [<main_uri> [<image_uri>]]]]")
     print("        Create new token")
     print("            - <supply> is initial token supply (number of indivisible units)")
     print("            - <decimals> is number of decimal points to divide up the supply")
@@ -31,12 +38,7 @@ def usage():
     print("USE WITH CAUTION.")
     print()
 
-from sys import argv, exit
-from contextlib import suppress
-
 with suppress(KeyboardInterrupt):
-    call = 'orbit-cli token'
-
     if len(argv) > 1 and argv[1] is None:
         # we were called from the parent module
         args = argv[2:]
@@ -45,7 +47,7 @@ with suppress(KeyboardInterrupt):
 
     if len(args) < 1:
         usage()
-        exit(1)
+        exit(201)
 
     cmd = args[0]
     args = args[1:] if len(args) > 1 else None
@@ -54,25 +56,13 @@ with suppress(KeyboardInterrupt):
         usage()
 
     elif cmd == 'create':
-        print()
-
-        if args is not None and (len(args) < 3 or len(args) > 6):
-            print("{} {}: wrong number of arguments".format(call, cmd))
-            exit(2)
-
         from .create import run
-        try:
-            run(args)
-
-        except (ValueError, TypeError) as e:
-            print()
-            print("{} {}: {}".format(call, cmd, e))
-            exit(3)
+        invoke(CALL, cmd, 202, run, args, 3, 6, optional=True)
 
     else:
         #log.error("unknown command", command=cmd)
         print()
-        print("{}: unknown command: {}".format(call, cmd))
+        print("{}: unknown command: {}".format(CALL, cmd))
         usage()
-        exit(2)
+        exit(299)
 

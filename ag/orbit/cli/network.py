@@ -1,9 +1,9 @@
 # Copyright (C) 2018 Alpha Griffin
 # @%@~LICENSE~@%@
 
-from .wallet.list import run as list_wallets
-from .wallet.key import key as get_key
 from ag.orbit import API
+from ag.orbit.cli.wallet.list import list as list_wallets
+from ag.orbit.cli.wallet.key import key as get_key
 
 from bitcash import Key
 from bitcash.exceptions import InsufficientFunds
@@ -123,4 +123,5 @@ def broadcast(op):
         raise ValueError("Unable to broadcast, try again later or try increasing the fee: {}".format(e))
     except InsufficientFunds as e:
         raise ValueError(e)
+
 

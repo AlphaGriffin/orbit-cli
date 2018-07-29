@@ -3,16 +3,9 @@
 # Copyright (C) 2018 Alpha Griffin
 # @%@~LICENSE~@%@
 
-from ag.orbit import API
-from ag.orbit.cli.config import dir
-from ag.orbit.cli.encryption import encrypt
-
-from os.path import exists, join
-from base64 import urlsafe_b64encode
-from sys import stdin
-from getpass import getpass
-
-from bitcash.wallet import PrivateKey
+from ag.orbit.command import main
+from ag.orbit.cli import password_handler
+from ag.orbit.wallet import path, create as wcreate
 
 
 def run(args):
@@ -25,80 +18,45 @@ def run(args):
     if name is not None and not name:
         raise ValueError("Name cannot be empty")
 
-    #if password is not None and not password:
-    #    raise ValueError("Password cannot be empty")
-
+    print()
     create(name, password)
 
 def create(name=None, password=None):
-    print("Creating new Bitcoin Cash wallet...")
+    if name:
+        print("Creating new ORBIT wallet file for BCH...")
+    else:
+        print("Generating new BCH key-pair...")
 
-    if name is not None:
+    if name:
         print("    Name: {}".format(name))
-        path = join(dir, urlsafe_b64encode(name.encode('utf-8')).decode('ascii') + ".wallet")
-        print("    File: {}".format(path))
+        wpath = path(name)
+        print("    File: {}".format(wpath))
 
-        if exists(path):
-            raise ValueError("A wallet file by this name already exists! Please delete it first.")
+    else:
+        wpath = None
 
-    wallet = PrivateKey()
-    print("    Public address: {}".format(wallet.address))
-    key = wallet.to_hex()
+    def show_address(address):
+        print("    Public BCH address: {}".format(address))
+
+    def unencrypted_warning():
+        print("WARNING: You are about to save the private key without encryption! THIS IS NOT RECOMMENDED.")
+        confirm = input("    Please type 'confirm' if you accept the risk and wish to continue: ")
+
+        if confirm != 'confirm':
+            raise ValueError('User abort')
+
+    wallet = wcreate(wpath, None, password_handler(password, create=True), show_address, unencrypted_warning)
 
     if name is None:
-        print("    Private key (hex): {}".format(wallet.to_hex()))
-        return
+        print("    Private BCH key (hex): {}".format(wallet.to_hex()))
 
-    if password is None:
-        print()
-
-        if stdin.isatty():
-            password = getpass("Enter password for encryption: ")
-
-            if password:
-                confirm = getpass("Please re-enter your password: ")
-
-                if password != confirm:
-                    print()
-                    raise ValueError("The passwords do not match")
-
-            else:
-                print("WARNING: You are about to save the private key without encryption! This is not recommended.")
-                confirm = input("    Please type 'confirm' if you accept the risk and wish to continue: ")
-
-                if confirm != 'confirm':
-                    print()
-                    raise ValueError("User abort")
-
-        else:
-            password = stdin.readline().rstrip()
-
-            if not password:
-                raise ValueError("Password may not be empty")
-
-    elif not password:
-        print()
-        raise ValueError("Password may not be empty")
-
-    key = key.encode('charmap')
-    print()
-
-    if password:
-        data = b"%E%" + encrypt(API.PREAMBLE + key, password.encode('utf-8'))
     else:
-        print("WARNING: Saving key without encryption.")
-        data = b"%D%" + key
+        print()
+        print("Wallet saved")
 
-    with open(path, 'wb') as out:
-        out.write(data)
-
-    print("Wallet saved")
+    return wallet
 
 
 if __name__ == '__main__':
-    from contextlib import suppress
-    from sys import argv
-
-    with suppress(KeyboardInterrupt):
-        run(argv[1:])
+    main(run)
 

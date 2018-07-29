@@ -3,31 +3,31 @@
 # Copyright (C) 2018 Alpha Griffin
 # @%@~LICENSE~@%@
 
-from ag.orbit.cli.config import dir
+import ag.orbit.cli
+from ag.orbit.command import main
+from ag.orbit.config import dir
+from ag.orbit.wallet import list as get_list
 
-from os.path import join, split
-from base64 import urlsafe_b64decode
-from glob import glob
 
+def run(args):
+    if args is not None and len(args) != 0:
+        raise ValueError("Not expecting any arguments")
 
-def run():
+    print()
+    list()
+
+def list():
     print("Listing wallets at {}".format(dir))
 
-    wallets = glob(join(dir, "*.wallet"))
+    wallets = get_list()
 
-    for filename in wallets:
-        filename = split(filename)[1][:-7]
-        name = urlsafe_b64decode(filename).decode('utf-8')
-        print("    '{}'".format(name))
+    for wallet in wallets:
+        print("    '{}'".format(wallet))
 
     print()
     print("{} wallet{} found".format(len(wallets), "s" if len(wallets) != 1 else ""))
 
 
 if __name__ == '__main__':
-    from contextlib import suppress
-    from sys import argv
-
-    with suppress(KeyboardInterrupt):
-        run()
+    main(run)
 
