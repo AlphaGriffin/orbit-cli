@@ -31,7 +31,7 @@ NAME    = 'cli'                         # should match source package name in NS
 COMMAND = 'orbit-cli'                   # command name may be different than package name
 REQUIRE = [                             # package dependencies
             #'ag.logging',
-            'ag.orbit(>=0.2,<1)',
+            'ag.orbit(>=0.4,<1)',
             'appdirs',
             'bitcash(>=0.5.2.4)',
             'pycrypto'

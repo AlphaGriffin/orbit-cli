@@ -28,7 +28,7 @@ The following projects, when used in conjunction with ORBIT CLI, complete a full
 
 - ORBIT Specification and API: https://github.com/AlphaGriffin/orbit
 - ORBIT Node: https://github.com/AlphaGriffin/orbit-node
-- ORBIT Qt Wallet: https://github.com/AlphaGriffin/orbit-wallet
+- ORBIT Qt Wallet: https://github.com/AlphaGriffin/orbit-gui
 - ORBIT Web: https://github.com/AlphaGriffin/orbit-web
 
 

@@ -1,6 +1,8 @@
 Copyright (C) 2018 Alpha Griffin
 @%@~LICENSE~@%@
 
+saw_080118_1 - Add wallet rename and token transfer commands.
+
 saw_072818_1 - Clean up wallet management using the new API routines. Add wallet `balance` command.
 
 saw_072718_5 - Misc. installation and documentation fixes.

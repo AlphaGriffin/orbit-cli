@@ -33,6 +33,10 @@ def usage():
     print("    list")
     print("        List all saved wallets")
     print()
+    print("    rename <name> <newname>")
+    print("            - <name> is the current name of the wallet")
+    print("            - <newname> is a new name for the wallet")
+    print()
     print("    address <name> [<password>]")
     print("        Print the public address for a wallet")
     print("            - <name> is the name of the wallet to read")
@@ -47,6 +51,12 @@ def usage():
     print("        Print the private key stored in a wallet")
     print("            - <name> is the name of the wallet to read")
     print("            - <password> is the encryption password used during creation")
+    #print()
+    #print("    sign <name> [<message> [<password>]]")
+    #print("        Print the private key stored in a wallet")
+    #print("            - <name> is the name of the wallet to read")
+    #print("            - <message> is the message to sign")
+    #print("            - <password> is the encryption password used during creation")
     print()
     print("The <key> or <password> used by any of these commands may be provided on the command line")
     print("or piped in through stdin. If omitted, you will be prompted to enter the key/password.")
@@ -81,17 +91,25 @@ with suppress(KeyboardInterrupt):
         from .list import run
         invoke(CALL, cmd, 304, run, args)
 
+    elif cmd == 'rename':
+        from .rename import run
+        invoke(CALL, cmd, 305, run, args, 2, 2)
+
     elif cmd == 'address':
         from .address import run
-        invoke(CALL, cmd, 305, run, args, 1, 2)
+        invoke(CALL, cmd, 306, run, args, 1, 2)
 
     elif cmd == 'balance':
         from .balance import run
-        invoke(CALL, cmd, 306, run, args, 1, 2)
+        invoke(CALL, cmd, 307, run, args, 1, 2)
 
     elif cmd == 'key':
         from .key import run
-        invoke(CALL, cmd, 307, run, args, 1, 2)
+        invoke(CALL, cmd, 308, run, args, 1, 2)
+
+    #elif cmd == 'sign':
+    #    from .sign import run
+    #    invoke(CALL, cmd, 308, run, args, 1, 3)
 
     else:
         #log.error("unknown command", command=cmd)

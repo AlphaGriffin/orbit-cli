@@ -52,6 +52,14 @@ ag\.orbit\.cli\.wallet\.list module
     :undoc-members:
     :show-inheritance:
 
+ag\.orbit\.cli\.wallet\.rename module
+-------------------------------------
+
+.. automodule:: ag.orbit.cli.wallet.rename
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 
 Module contents
 ---------------

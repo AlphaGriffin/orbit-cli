@@ -12,6 +12,14 @@ ag\.orbit\.cli\.token\.create module
     :undoc-members:
     :show-inheritance:
 
+ag\.orbit\.cli\.token\.transfer module
+--------------------------------------
+
+.. automodule:: ag.orbit.cli.token.transfer
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 
 Module contents
 ---------------

@@ -28,6 +28,13 @@ def usage():
     print("            - <main_uri> is optional link to a web page, etc.")
     print("            - <image_uri> is optional link or data for embedded image")
     print()
+    print("    transfer [<token> <to> <units|ALL>]")
+    print("        Transfer tokens")
+    print("            - <token> is the token address")
+    print("            - <to> is the address to transfer to")
+    print("            - <units> is the number of indivisible units (not normalized) to transfer;")
+    print("                the text \"ALL\" may be used to transfer all available tokens")
+    print()
     print("All commands may be called without arguments for full interactive mode.")
     print()
     print("Most commands require a private key for signing messages. You will be prompted")
@@ -58,6 +65,10 @@ with suppress(KeyboardInterrupt):
     elif cmd == 'create':
         from .create import run
         invoke(CALL, cmd, 202, run, args, 3, 6, optional=True)
+
+    elif cmd == 'transfer':
+        from .transfer import run
+        invoke(CALL, cmd, 203, run, args, 3, 3, optional=True)
 
     else:
         #log.error("unknown command", command=cmd)

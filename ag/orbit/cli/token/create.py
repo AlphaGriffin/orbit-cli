@@ -7,16 +7,15 @@ from ag.orbit.command import main
 from ag.orbit.ops.create import Create
 from ag.orbit.cli import arg
 from ag.orbit.cli.network import broadcast
-#from ag.orbit.wallet import key
 
 
 def run(args):
-    args = None if args is not None and len(args) < 1 else args
+    args = args if args else None
 
     print()
     print("Create new token...")
 
-    if args is not None:
+    if args:
         if len(args) < 3 or len(args) > 6:
             print()
             raise ValueError("Expecting no less than 3 and no more than 6 arguments")
