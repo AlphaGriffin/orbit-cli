@@ -1,16 +1,13 @@
 ag\.orbit\.cli\.token package
 =============================
 
-Submodules
-----------
-
-ag\.orbit\.cli\.token\.create module
-------------------------------------
-
-.. automodule:: ag.orbit.cli.token.create
+.. automodule:: ag.orbit.cli.token
     :members:
     :undoc-members:
     :show-inheritance:
+
+Submodules
+----------
 
 ag\.orbit\.cli\.token\.transfer module
 --------------------------------------
@@ -21,10 +18,3 @@ ag\.orbit\.cli\.token\.transfer module
     :show-inheritance:
 
 
-Module contents
----------------
-
-.. automodule:: ag.orbit.cli.token
-    :members:
-    :undoc-members:
-    :show-inheritance:

@@ -22,19 +22,31 @@ from sys import stdin
 from getpass import getpass
 
 
-def arg(args, index, name, optional=False):
+def arg(args, index, name, optional=False, description=None, hints=None, none=None):
     value = None
 
-    if args is None:
-        value = input("    {}: ".format(name))
-
-    elif len(args) > index:
+    if args and len(args) > index:
         value = args[index]
 
-    elif not optional:
-        value = input("    {}: ".format(name))
+    elif args is None or not optional:
+        if description or hints:
+            print("    {}:".format(name))
+            if description:
+                print("        {}".format(description))
+            if hints:
+                for hint in hints:
+                    print("          * {}".format(hint))
+            value = input("      --> ")
+        else:
+            value = input("    {}: ".format(name))
 
-    return value if value else None
+    if not optional and not value:
+        raise ValueError("{} is required".format(name))
+
+    if none and value == none:
+        return None
+    else:
+        return value if value else None
 
 
 def password_handler(password=None, create=False):

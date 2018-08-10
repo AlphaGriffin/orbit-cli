@@ -1,11 +1,18 @@
 ag\.orbit\.cli package
 ======================
 
+.. automodule:: ag.orbit.cli
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 Subpackages
 -----------
 
 .. toctree::
 
+    ag.orbit.cli.admin
+    ag.orbit.cli.config
     ag.orbit.cli.token
     ag.orbit.cli.wallet
 
@@ -21,10 +28,3 @@ ag\.orbit\.cli\.network module
     :show-inheritance:
 
 
-Module contents
----------------
-
-.. automodule:: ag.orbit.cli
-    :members:
-    :undoc-members:
-    :show-inheritance:

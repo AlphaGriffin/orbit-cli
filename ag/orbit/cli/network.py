@@ -99,7 +99,7 @@ def broadcast(op, token_address=None):
     #print(message)
 
     if len(message) > MESSAGE_LIMIT:
-        raise AssertionError("The data is too large")
+        raise ValueError("The data is too large; try reducing some text or removing optional data")
 
     # sanity check
     parsed = orbit.parse(message)

@@ -13,10 +13,14 @@ def usage():
     print()
     print("Usage: {} <module>".format(CALL))
     print()
+    print("    ORBIT command-line interface for tokens on Bitcoin Cash.")
+    print()
     print("Where <module> is:")
     print("    help     - Display this usage screen")
-    print("    token    - Token commands")
+    print("    config   - Configuration")
     print("    wallet   - Wallet commands")
+    print("    token    - Token user commands")
+    print("    admin    - Token administration commands")
     #print("    network  - Network commands")
     print()
 
@@ -35,11 +39,17 @@ with suppress(KeyboardInterrupt):
     if module == 'help':
         usage()
 
-    elif module == 'token':
-        from .token import __main__
+    elif module == 'config':
+        from .config import __main__
 
     elif module == 'wallet':
         from .wallet import __main__
+
+    elif module == 'token':
+        from .token import __main__
+
+    elif module == 'admin':
+        from .admin import __main__
 
     #elif module == 'network':
     #    from .network import __main__

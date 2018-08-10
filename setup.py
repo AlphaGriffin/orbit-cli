@@ -31,7 +31,7 @@ NAME    = 'cli'                         # should match source package name in NS
 COMMAND = 'orbit-cli'                   # command name may be different than package name
 REQUIRE = [                             # package dependencies
             #'ag.logging',
-            'ag.orbit(>=0.4,<1)',
+            'ag.orbit(>=0.7,<1)',
             'appdirs',
             'bitcash(>=0.5.2.4)',
             'pycrypto'
@@ -123,6 +123,7 @@ if __name__ == '__main__':
         url=URL,
         classifiers=CLASS,
         keywords=TAGS,
+        scripts=([ COMMAND ] if COMMAND else None),
 
         # run-time dependencies
         install_requires=REQUIRE,

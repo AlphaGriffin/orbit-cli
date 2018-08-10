@@ -15,18 +15,11 @@ def usage():
     print()
     print("Usage: {} <command>".format(CALL))
     print()
+    print("    User token management.")
+    print()
     print("Where <command> is:")
     print("    help")
     print("        Display this usage screen")
-    print()
-    print("    create [<supply> <decimals> <symbol> [<name> [<main_uri> [<image_uri>]]]]")
-    print("        Create new token")
-    print("            - <supply> is initial token supply (number of indivisible units)")
-    print("            - <decimals> is number of decimal points to divide up the supply")
-    print("            - <symbol> is ticker symbol")
-    print("            - <name> is optional name")
-    print("            - <main_uri> is optional link to a web page, etc.")
-    print("            - <image_uri> is optional link or data for embedded image")
     print()
     print("    transfer [<token> <to> <units|ALL>]")
     print("        Transfer tokens")
@@ -34,6 +27,14 @@ def usage():
     print("            - <to> is the address to transfer to")
     print("            - <units> is the number of indivisible units (not normalized) to transfer;")
     print("                the text \"ALL\" may be used to transfer all available tokens")
+    print()
+    print("    register [<token>]")
+    print("        Register interest in crowd-sale or faucet")
+    print("            - <token> is the token address")
+    print()
+    print("    unregister [<token>]")
+    print("        Remove interest in crowd-sale or faucet")
+    print("            - <token> is the token address")
     print()
     print("All commands may be called without arguments for full interactive mode.")
     print()
@@ -54,7 +55,7 @@ with suppress(KeyboardInterrupt):
 
     if len(args) < 1:
         usage()
-        exit(201)
+        exit(301)
 
     cmd = args[0]
     args = args[1:] if len(args) > 1 else None
@@ -62,18 +63,22 @@ with suppress(KeyboardInterrupt):
     if cmd == 'help':
         usage()
 
-    elif cmd == 'create':
-        from .create import run
-        invoke(CALL, cmd, 202, run, args, 3, 6, optional=True)
-
     elif cmd == 'transfer':
         from .transfer import run
-        invoke(CALL, cmd, 203, run, args, 3, 3, optional=True)
+        invoke(CALL, cmd, 302, run, args, 3, 6, optional=True)
+
+    elif cmd == 'register':
+        from .register import run
+        invoke(CALL, cmd, 303, run, args, 1, 1, optional=True)
+
+    elif cmd == 'unregister':
+        from .unregister import run
+        invoke(CALL, cmd, 304, run, args, 1, 1, optional=True)
 
     else:
         #log.error("unknown command", command=cmd)
         print()
         print("{}: unknown command: {}".format(CALL, cmd))
         usage()
-        exit(299)
+        exit(399)
 

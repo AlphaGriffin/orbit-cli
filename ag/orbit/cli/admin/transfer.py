@@ -16,25 +16,24 @@ def run(args):
     print("Transfer tokens...")
 
     if args:
-        if len(args) != 3:
+        if len(args) != 2:
             print()
-            raise ValueError("Expecting exactly 3 arguments")
+            raise ValueError("Expecting exactly 2 arguments")
 
-    token = arg(args, 0, "Token address")
-    to = arg(args, 1, "Destination address")
+    to = arg(args, 0, "Destination address")
 
-    units = arg(args, 2, "Number of indivisible units (leave blank to transfer ALL tokens)", optional=True)
+    units = arg(args, 1, "Number of indivisible units (leave blank to transfer ALL tokens)", optional=True)
     if units and units != "ALL":
         units = int(units)
 
-    transfer(token, to, units)
+    transfer(to, units)
 
-def transfer(token, to, units):
+def transfer(to, units):
     if units == "ALL":
         units = None
 
     op = Transfer(to, units)
-    broadcast(op, token_address=token)
+    broadcast(op)
 
 
 if __name__ == '__main__':

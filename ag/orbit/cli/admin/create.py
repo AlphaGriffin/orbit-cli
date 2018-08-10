@@ -4,7 +4,7 @@
 # @%@~LICENSE~@%@
 
 from ag.orbit.command import main
-from ag.orbit.ops.create import Create
+from ag.orbit.ops.allocation import Create
 from ag.orbit.cli import arg
 from ag.orbit.cli.network import broadcast
 
@@ -23,9 +23,9 @@ def run(args):
     supply = int(arg(args, 0, "Supply"))
     decimals = int(arg(args, 1, "Decimals"))
     symbol = arg(args, 2, "Symbol")
-    name = arg(args, 3, "Name", True)
-    main_uri = arg(args, 4, "Main URI", True)
-    image_uri = arg(args, 5, "Image URI", True)
+    name = arg(args, 3, "Name", optional=True)
+    main_uri = arg(args, 4, "Main URI", optional=True)
+    image_uri = arg(args, 5, "Image URI", optional=True)
 
     create(supply, decimals, symbol, name, main_uri, image_uri)
 

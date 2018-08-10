@@ -1,18 +1,23 @@
-===========================================================================
+###########################################################################
 ORBIT CLI - Command-Line Interface for Op_Return Bitcoin-Implemented Tokens
-===========================================================================
+###########################################################################
+
+.. image:: https://badges.gitter.im/AlphaGriffin/orbit.svg
+   :alt: Join the chat at https://gitter.im/AlphaGriffin/orbit
+   :target: https://gitter.im/AlphaGriffin/orbit?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
 
 **A command-line interface for interacting with tokens on Bitcoin Cash implementing the ORBIT standard.**
 
 The official website for ORBIT is http://orbit.cash.
 
 .. contents:: Table of Contents
+   :depth: 2
+   :local:
 
-*"Orbit the moon"*
 
-
+************
 Introduction
-------------
+************
 
 The ORBIT CLI is a program that allows interaction with and management of tokens on Bitcoin Cash implementing the ORBIT standard.
 
@@ -20,7 +25,7 @@ ORBIT CLI is open source and licensed under the MIT license. See the `LICENSE <L
 
 
 The ORBIT Ecosystem
-~~~~~~~~~~~~~~~~~~~
+===================
 
 ORBIT is a specification for simple, fungible tokens implemented by utilizing OP_RETURN for the storage of token events on the Bitcoin Cash blockchain. No changes to the Bitcoin Cash protocol or nodes are required. However, wallets may wish to incorporate this token standard in order to allow the user to easily take account of and interact with tokens that adhere to this ORBIT standard.
 
@@ -32,35 +37,60 @@ The following projects, when used in conjunction with ORBIT CLI, complete a full
 - ORBIT Web: https://github.com/AlphaGriffin/orbit-web
 
 
+*************
 Specification
--------------
+*************
 
 The ORBIT repository at https://github.com/AlphaGriffin/orbit defines the official and complete specification for ORBIT. 
 
 *The current specification version is: 0 (beta testing). Version 0 is reserved and should be used for all testing.*
 
 
+
+************
+Contributing
+************
+
+Your help is appreciated! Alpha Griffin is a small team focused on developing new technology projects. If you have questions or comments or would like to   contribute to the ORBIT node or ecosystem in any way, please feel free to contact us. You may submit issues or pull requests directly on GitHub or          communicate with the team members at the following locations:
+
+- https://gitter.im/AlphaGriffin
+- https://alphagriffintrade.slack.com
+
+Have a suggestion or request? Let us know!
+
+
+To-Do List
+==========
+
+There are a number of tasks already identified on the `To-Do list <TODO>`_ that could use your help (included here in generated documentation).
+
+.. include:: TODO
+   :literal:
+
+
+
+*********
 ORBIT CLI
----------
+*********
 
 This ORBIT CLI is written in Python.
 
 
 Dependencies
-~~~~~~~~~~~~
+============
 
 - Python 3
-- ORBIT API: https://github.com/AlphaGriffin/orbit
-- appdirs: https://github.com/ActiveState/appdirs (`pip install appdirs`)
-- BitCash >= 0.5.2.4: https://github.com/sporestack/bitcash (`pip install bitcash\>=0.5.2.4`)
-- PyCrypto: https://github.com/dlitz/pycrypto (`pip install pycrypto`)
-- *For building documentation (optional):* sphinx and sphinx_rtd_theme (`pip install sphinx sphinx_rtd_theme`)
+- ORBIT API: https://github.com/AlphaGriffin/orbit (``pip install git+https://github.com/AlphaGriffin/orbit``)
+- appdirs: https://github.com/ActiveState/appdirs (``pip install appdirs``)
+- BitCash >= 0.5.2.4: https://github.com/sporestack/bitcash (``pip install bitcash\>=0.5.2.4``)
+- PyCrypto: https://github.com/dlitz/pycrypto (``pip install pycrypto``)
+- *For building documentation (optional):* sphinx and sphinx_rtd_theme (``pip install sphinx sphinx_rtd_theme``)
 
 In addition to the above, ORBIT CLI may require RPC access to a local or remote ORBIT node for some operations, such as the one provided by Alpha Griffin (http://orbit.alphagriffin.com).
 
 
 Build Overview
-~~~~~~~~~~~~~~
+==============
 
 Both a Makefile and setup.py are provided and used. The setup.py uses Python's standard setuptools package and you can call this script directly to do the basic Python tasks such as creating a wheel, etc.
 
@@ -89,7 +119,7 @@ To clean up all the common generated files from your project folder::
 
 
 Installing
-~~~~~~~~~~
+==========
 
 To install this project to the local system::
 
@@ -99,14 +129,30 @@ Note that you may need superuser permissions to perform the above step.
 
 
 Using
-~~~~~
+=====
 
 **FIXME**
 
 
+**********
 Python API
-----------
+**********
 
 .. toctree::
    API Documentation <api/modules>
+
+
+*******
+History
+*******
+
+All changes are tracked in the `CHANGELOG <CHANGELOG>`_ file.
+
+.. include:: CHANGELOG
+   :literal:
+
+
+----
+
+*"Orbit the moon"*
 

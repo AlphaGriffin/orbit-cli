@@ -46,7 +46,7 @@ extensions = [
     'sphinx.ext.intersphinx',
     'sphinx.ext.todo',
     'sphinx.ext.coverage',
-    'sphinx.ext.pngmath',
+    'sphinx.ext.imgmath',
     'sphinx.ext.ifconfig',
     'sphinx.ext.viewcode',
 ]
@@ -134,8 +134,8 @@ html_theme = 'sphinx_rtd_theme'
 # further.  For a list of options available for each theme, see the
 # documentation.
 html_theme_options = {
-        #'canonical_url': 'http://doc.alphagriffin.com/' + NAME,
-        'analytics_id': 'UA-36092231-27',
+        'canonical_url': 'https://doc.orbit.cash/' + NAME,
+        'analytics_id': 'UA-36092231-29',
         'display_version': True,
         'sticky_navigation': True,
         'collapse_navigation': False,
@@ -280,12 +280,14 @@ latex_documents = [
 
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
-man_pages = [
-    (master_doc, COMMAND, 'Command for ' + NS + '.' + NAME + ' API',
-     [author], 1),
-    (master_doc, NS + '.' + NAME, 'API Documentation',
-     [author], 3)
-]
+man_pages = []
+if COMMAND:
+    man_pages.append(
+            (master_doc, COMMAND, 'Command for ' + NS + '.' + NAME + ' API',
+                [author], 1))
+man_pages.append(
+        ('api/modules', NS + '.' + NAME, 'API Documentation',
+            [author], 3))
 
 # If true, show URL addresses after external links.
 #man_show_urls = False

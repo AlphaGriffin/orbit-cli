@@ -1,6 +1,11 @@
 ag\.orbit\.cli\.wallet package
 ==============================
 
+.. automodule:: ag.orbit.cli.wallet
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 Submodules
 ----------
 
@@ -60,11 +65,12 @@ ag\.orbit\.cli\.wallet\.rename module
     :undoc-members:
     :show-inheritance:
 
+ag\.orbit\.cli\.wallet\.tokens module
+-------------------------------------
 
-Module contents
----------------
-
-.. automodule:: ag.orbit.cli.wallet
+.. automodule:: ag.orbit.cli.wallet.tokens
     :members:
     :undoc-members:
     :show-inheritance:
+
+
