@@ -30,7 +30,6 @@ NS      = 'ag.orbit'                    # namespace / meta-package folder
 NAME    = 'cli'                         # should match source package name in NS folder
 COMMAND = 'orbit-cli'                   # command name may be different than package name
 REQUIRE = [                             # package dependencies
-            #'ag.logging',
             'ag.orbit(>=0.7,<1)',
             'appdirs',
             'bitcash(>=0.5.2.4)',

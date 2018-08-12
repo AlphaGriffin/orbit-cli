@@ -1,7 +1,6 @@
 To-do list for ORBIT CLI:
 
 - finish API documentation
-- generated docs on website (doc.orbit.cash)
 - more cli functions (connect to node): token list, etc.
 - test cases
 
